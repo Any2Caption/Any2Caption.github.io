@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Any2Caption: Interpreting Any Condition to Caption for Controllable Video Generation">
+    <meta name="keywords" content="Any2Caption: Interpreting Any Condition to Caption for Controllable Video Generation">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Any2Caption</title>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <link href="https://fonts.cdnfonts.com/css/caveat" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+
+    <link rel="stylesheet" href="./static/css/index-gradio.css">
+    <link rel="stylesheet" href="./static/css/live_theme.css">
+
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/caveat');
+    </style>
+
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* 让列宽固定 */
+        }
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+        }
+        .col1 { width: 300px; }
+        .col2 { width: 200px; }
+        .col3 { width: 200px; }
+        .col4 { width: 200px; }
+    </style> 
+    
+</head>
+<body>
+
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-2 publication-title">Any2Caption: Interpreting Any Condition to Caption for Controllable Video Generation</h1>
+                    <div class="is-size-5 publication-authors">
+                        Anonymous
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-full-width">
+                <h2 class="title is-2">Abstract</h2>
+                <div class="content has-text-justified">
+                    <p  class="content has-text-justified">
+                        To address the bottleneck of accurate user intent interpretation within current video generation community, we present <b><code>Any2Caption</code></b>, a novel framework for controllable video generation from any condition.
+                        The key idea is decoupling various condition interpretation steps from the video synthesis step.  
+                        By leveraging modern multimodal large language models (MLLMs), <b><code>Any2Caption</code></b> interprets diverse inputs—text, images, videos, and specialized cues such as region, motion, and camera poses—into dense, structured captions that offer backbone video generators with better guidance.  
+                        We also introduce <b><code>Any2CapIns</code></b>, a large-scale dataset with 337K instances and 407K conditions for any-condition-to-caption instruction tuning.  
+                        Comprehensive evaluations demonstrate significant improvements of our system in controllability and video quality across various arts of existing video generation models. 
+                    </p>
+                    <div class="content has-text-justified" id="fig1"> 
+                        <img class="columns is-centered has-text-centered" src="./static/images/intro.png" alt="Teaser" width="99%"
+                                style="display: block; margin:0 auto">
+                        <br>
+                        <figcaption>
+                            <p style="text-align: left;">
+                                <font color="061E61">
+                                    <b>Figure 1: </b>Any2Caption, an efficient and versatile framework for interpreting diverse conditions to structured captions, which then can be fed into any video generator to generate highly controllable videos.
+                                </font>
+                            </p>
+                        </figcaption>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section">
+    <div class="container is-max-desktop">
+
+        <div class="columns is-centered has-text-centered">
+            <h2 class="title is-2">Visulizations</h2>
+            <br>
+        </div>
+
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <h4 class="title is-4" >• Structured Caption to Video Generation</h4>
+                <p>To further showcase the model's capacity to understand and leverage input conditions, we directly feed the structured captions—derived from our model's interpretation—into downstream text-to-video generation systems (e.g., CogvideoX and Hunyuan)</p>
+                <div class="content example">
+                    <table>
+                        <thead>
+                            <tr >
+                                <th class="col1">Short Prompt</th>
+                                <th class="col2" colspan="2">Controls</th>
+                                <th class="col3">Generated Video</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><p><span style="color: rgb(0, 26, 255);">(Hunyuan)</span> A woman walks in a minimalist, modern room. She is holding  two mugs and looks slightly displeased. The room has natural light.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/811_ids.png"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/811_depth.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/811_ids_hunyuan.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p><span style="color: rgb(0, 26, 255);">(Hunyuan)</span> A young man carrying a messenger bag runs down a narrow, cobblestone street filled with sandbags and crates, suggesting a wartime.</p></td>
+                                <td colspan="2"><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/86_id.jpg"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/86_ids_hunyuan.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p><span style="color: rgb(0, 26, 255);">(Hunyuan)</span> A woman walks in a minimalist, modern room. She is holding  two mugs and looks slightly displeased. The room has natural light.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/987_ids.png"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/987_depth.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/987_ids_hunyuan.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p><span style="color: rgb(0, 26, 255);">(CogVideoX)</span> A woman lies in bed, gradually waking up or relaxing with soft, warm lighting creating a cozy atmosphere. </p></td>
+                                <td colspan="2"><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/25_ids.png"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/25_ids_cogvideoX.gif"></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <h4 class="title is-4" >• IDs to Video Generation</h4>
+                <p>Given multiple identities, and a short prompt, we compared the video generation results with short / structured prompt.</p>
+                <div class="content example">
+                    <table>
+                        <thead>
+                            <tr >
+                                <th class="col1">Short Prompt</th>
+                                <th class="col2">Controls</th>
+                                <th class="col3">Generated Video w/ short prompt</th>
+                                <th class="col3">Generated Video w/ short prompt + Condition Caption</th>
+                                <th class="col4">Generated Video w/ structured prompt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><p>A man in a dark suit stands outdoors, initially looking distressed. The camera captures a close-up of his face, showing a bandage on his forehead. Suddenly, he shifts his stance urgently, turns his head to the side, and raises a handgun with determination. The setting is plain, possibly showing a clear sky, and the lighting suggests it's daytime.
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_to_video/1_ids.png"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_to_video/1_seed666_short.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_to_video/1_seed666.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_to_video/1_seed666_structured.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p> A young girl wearing a school uniform and a young man in casual clothes are walking side by side along a dimly lit concrete wall at night. The girl walks on the left while the boy rides a bicycle on the right. The background is urban and gritty, with warm, moody lighting. The camera follows them closely, capturing a medium close-up shot of their upper bodies from different angles as they move. The scene has a nostalgic and contemplative atmosphere.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_to_video/14_ids.png"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_to_video/14_seed666_short.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_to_video/14_seed666.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_to_video/14_seed666_structured.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p> A woman in a skirt dances on the snow with her hair flying.</p></td>
+                                <td colspan="4"><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_to_video/image_reference_34.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p> A whale is floating in the girl's palm, and the camera gradually zooms in.</p></td>
+                                <td colspan="4"><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_to_video/image_reference_77.gif"></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <h4 class="title is-4" >• Camera to Video Generation</h4>
+                <p>Given a camera trajectory and a short prompt, we compared the video generation results with short / structured prompt.</p>
+                <div class="content example">
+                    <table>
+                        <thead>
+                            <tr >
+                                <th class="col1">Short Prompt</th>
+                                <th class="col2">Controls</th>
+                                <th class="col3">Generated Video w/ short prompt</th>
+                                <th class="col4">Generated Video w/ structured prompt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><p>A serene video of a large house with a red roof and a spacious porch, surrounded by lush greenery. A peaceful countryside
+                                    setting with vibrant colors and a tranquil atmosphere.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/camera_to_video/camera_pose_10_a2c67c5f22fb5052.png"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/camera_to_video/10_generated-shortcaption.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/camera_to_video/10_generated-structuredcaption.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p> A well-lit dining and living room with elegant and classic decor. The dining table is surrounded by chairs and has a chandelier
+                                    above it. There's a wooden cabinet against the wall. The background features a hallway with a staircase and another dining area visible. The
+                                    decor includes wooden furniture and framed pictures on the walls.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/camera_to_video/camera_pose_115_52b9e106825852a5.png"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/camera_to_video/115_generated-shortcaption.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/camera_to_video/115_generated-structuredcaption.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p> The scene is bathed in bright sunlight, emphasizing the warm and inviting atmosphere. A modern house with large windows
+                                    and a balcony is showcased. Potted plants accent the architectural details. Distant mountains frame the view. Lush greenery surrounds the
+                                    scene. The sky is a clear blue, dotted with scattered clouds. A dreamy lens flare effect adds to the serene quality. The overall ambiance is
+                                    tranquil and picturesque.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/camera_to_video/camera_pose_129_f6dca34bd73f0e11.png"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/camera_to_video/129_generated-shortcaption.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/camera_to_video/129_generated-structuredcaption.gif"></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <h4 class="title is-4" >• IDs+Depth to Video Generation</h4>
+                <p>Given a depth sequence, multiple identities, and a short prompt, we compared the video generation results with short / structured prompt.</p>
+                <div class="content example">
+                    <table>
+                        <thead>
+                            <tr >
+                                <th class="col1">Short Prompt</th>
+                                <th class="col2" colspan="2">Controls</th>
+                                <th class="col3">Generated Video w/ short prompt</th>
+                                <th class="col4">Generated Video w/ structured prompt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><p>Young woman with cat ears holding a white cat in a sunlit meadow. Blue butterflies flutter around. Gentle caresses and a serene, magical atmosphere. Trees cast a warm glow. Fixed camera at eye level capturing upper body. Whimsical, enchanting style.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/1_ids.png"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/1_depth.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/1_generated-short.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/1_generated-structured.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p> A young girl dances in a bright, colorful room. A fluffy dog joyfully mimics her moves. The room features unique, colorful furniture with large windows letting in natural light. The dance is lively and expressive. The atmosphere is cheerful and vibrant. The camera captures full body movements at eye level.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/4_ids.png"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/4_depth.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/4_generated-short.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/4_generated-structured.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p> A man in a blue sweater and dark jacket looks distressed and scared. He is outdoors in a residential area with trees and buildings in the background. The camera pans smoothly, focusing on his upper body and face from various angles during daylight. The scene captures his intense emotions and movements realistically.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/31_ids.jpg"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/31_depth.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/31_generated-short.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/31_generated-structured.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p> A man in a dark, workshop-like room, explaining something passionately. Various tools and shoes are on the shelves and workbench. The lighting is dim, creating a serious atmosphere. The camera pans right and then moves forward, focusing on him from a medium close-up shot.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/46_ids.jpg"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/46_depth.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/46_generated-short.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/46_generated-structured.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p> A ballerina in a black dress with a feathered bodice and a male dancer in a dark, patterned outfit. Detailed stone wall backdrop with ornate metalwork, dim lighting. Emotional and synchronized dance with spins, lifts, arm movements. Dramatic and gothic atmosphere.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/67_ids.png"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/67_depth.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/67_generated-short.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/ids_depth_to_video/67_generated-structured.gif"></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+                <h4 class="title is-4" >• Style to Video Generation</h4>
+                <p>Given a style image and a short prompt, we compared the video generation results with short / structured prompt.</p>
+                <div class="content example">
+                    <table>
+                        <thead>
+                            <tr >
+                                <th class="col1">Short Prompt</th>
+                                <th class="col2">Controls</th>
+                                <th class="col3">Generated Video w/ short prompt</th>
+                                <th class="col4">Generated Video w/ structured prompt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><p>A lighthouse is beaming across choppy waters.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/style_to_video/800.jpg"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/style_to_video/R0L1_short.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/style_to_video/R0L1_structured.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p> A little girl is reading a book in the beautiful garden.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/style_to_video/oil_paint_2.jpg"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/style_to_video/R0L133_short.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/style_to_video/R0L133_structured.gif"></div></td>
+                            </tr>
+                            <tr>
+                                <td><p> A street performer playing the guitar.</p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/style_to_video/0001.jpg"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/style_to_video/R0L144_short.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/style_to_video/R0L144_structured.gif"></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
