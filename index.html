@@ -125,9 +125,8 @@
 
         <div class="columns is-centered">
             <div class="column is-full-width">
-                <h4 class="title is-4" >• Structured Caption to Video Generation</h4>
-                <p>To further showcase the model's capacity to understand and leverage input conditions, we directly feed the structured captions—derived from our model's interpretation—into downstream text-to-video generation systems (e.g., CogvideoX and Hunyuan)</p>
-                <div class="content example">
+                <h4 class="title is-4" >• Short Caption → Structure Caption → Video Generation</h4>
+                <p>To further showcase the model's capacity to understand and leverage input conditions, we directly feed the structured captions—derived from our model's interpretation—into downstream text-to-video generation systems (e.g., CogvideoX and Hunyuan). Here, we show the given short prompt and controllable condtions, and the generated videos only based on the structured captions.</p>
                     <table>
                         <thead>
                             <tr >
@@ -155,9 +154,10 @@
                                 <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/987_ids_hunyuan.gif"></div></td>
                             </tr>
                             <tr>
-                                <td><p><span style="color: rgb(0, 26, 255);">(CogVideoX)</span> A woman lies in bed, gradually waking up or relaxing with soft, warm lighting creating a cozy atmosphere. </p></td>
-                                <td colspan="2"><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/25_ids.png"></div></td>
-                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/25_ids_cogvideoX.gif"></div></td>
+                                <td><p><span style="color: rgb(0, 26, 255);">(CogVideoX)</span> A serene winter backyard with snow-covered ground and bare trees, revealing a blue shed with a white garage door and a doghouse. </p></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/camera_pose_1347.png"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/1347_depth.gif"></div></td>
+                                <td><div class="content has-text-justified"><img width="100%" src="./static/videos/structured_to_video/1347_ids_cogvideoX.gif"></div></td>
                             </tr>
                         </tbody>
                     </table>
